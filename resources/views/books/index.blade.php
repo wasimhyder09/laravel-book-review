@@ -5,6 +5,7 @@
     <form method="GET" action="{{route('books.index')}}" class="mb-4 flex items-center space-x-2">
       <input type="text" name="title" id="title" placeholder="Search by title..." value="{{request('title')}}" class="input h-10" />
       <input type="hidden" name="filter" value="{{request('filter')}}" />
+      <input type="hidden" name="page" value="{{request('page')}}" />
       <button type="submit" class="btn h-10">Search</button>
       <a href="{{route('books.index')}}" class="btn h-10">Clear</a>
     </form>
@@ -51,4 +52,9 @@
         </li>
       @endforelse
     </ul>
+    @if($books->count())
+      <nav class="mt-4">
+        {{$books->links()}}
+      </nav>
+    @endif
 @endsection
